@@ -1,0 +1,25 @@
+{
+  "job_id": "YZ-20260814-009",
+  "status": "done",
+  "stage": "方案已生成",
+  "plan_url": "/plan/YZ-20260814-009/zhongshu-plans.md",
+  "ministries": {
+    "礼部": "done",
+    "兵部": "done",
+    "工部": "done",
+    "户部": "done",
+    "吏部": "done",
+    "刑部": "done"
+  },
+  "zhongshu": {
+    "status": "已交付",
+    "output": "zhongshu-plans.md",
+    "plans": [
+      "A 万峰林连住(主推)",
+      "B 西江苗寨(备选)",
+      "第三备选 黄果树"
+    ],
+    "summary": "主推万峰林连住3晚（约5200-8100元2人），备选西江苗寨（约3751-5612元）；已落实刑部裁决+门下省封驳修正+刑部终核2处残留（品牌名弱化、雷公山笔误）",
+    "updated_at": "2026-08-14 14:05:00"
+  }
+}

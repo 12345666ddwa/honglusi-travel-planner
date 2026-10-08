@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>鸿胪寺 · 行旅规划</title>
+<style>
+  :root {
+    --paper: #faf7f0;
+    --paper-card: #fffdf8;
+    --paper-deep: #f3ecdd;
+    --ink: #2b2723;
+    --ink-soft: #6b645a;
+    --ink-faint: #9a9183;
+    --red: #960002;
+    --red-deep: #7a0001;
+    --red-soft: #f7e9e6;
+    --line: #e6dcc8;
+    --line-soft: #efe7d8;
+    --gold: #b08d4f;
+    --green: #3e6b43;
+    --font-serif: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", Georgia, "Times New Roman", serif;
+    --font-sans: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(176, 141, 79, 0.07), transparent 70%),
+      repeating-linear-gradient(0deg, rgba(150, 0, 2, 0.014) 0 1px, transparent 1px 4px);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--red-deep), var(--red), var(--red-deep));
+    z-index: 10;
+  }
+
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 56px 24px 72px;
+  }
+
+  /* ---------- 页首 ---------- */
+  .site-head { text-align: center; margin-bottom: 36px; }
+
+  .seal {
+    width: 88px; height: 88px;
+    display: block;
+    margin: 0 auto 18px;
+    filter: drop-shadow(0 2px 4px rgba(122, 0, 1, 0.25));
+  }
+
+  .site-head h1 {
+    font-family: var(--font-serif);
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    color: var(--ink);
+  }
+
+  .slogan {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 10px;
+    font-family: var(--font-serif);
+    font-size: 16px;
+    letter-spacing: 6px;
+    color: var(--red);
+  }
+
+  .slogan::before,
+  .slogan::after {
+    content: "";
+    flex: 0 1 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--line));
+  }
+
+  .slogan::after { background: linear-gradient(90deg, var(--line), transparent); }
+
+  .head-sub {
+    margin-top: 12px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    letter-spacing: 1px;
+  }
+
+  /* ---------- 续查条 ---------- */
+  .resume-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background: var(--paper-card);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  .resume-actions { display: flex; gap: 10px; }
+
+  .btn-small {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    padding: 6px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid var(--red);
+    background: #fff;
+    color: var(--red);
+    transition: all .18s ease;
+  }
+
+  .btn-small:hover { background: var(--red); color: #fff; }
+
+  .btn-quiet {
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    background: transparent;
+  }
+
+  .btn-quiet:hover { border-color: var(--ink-faint); color: var(--ink); background: transparent; }
+
+  /* ---------- 卡片 ---------- */
+  .card {
+    position: relative;
+    background: var(--paper-card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 30px 30px 26px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 10px rgba(90, 70, 40, 0.05);
+  }
+
+  .card::before,
+  .card::after {
+    content: "";
+    position: absolute;
+    width: 20px; height: 20px;
+    opacity: .45;
+    pointer-events: none;
+  }
+
+  .card::before {
+    top: 9px; left: 9px;
+    border-top: 2px solid var(--red);
+    border-left: 2px solid var(--red);
+    border-top-left-radius: 5px;
+  }
+
+  .card::after {
+    bottom: 9px; right: 9px;
+    border-bottom: 2px solid var(--red);
+    border-right: 2px solid var(--red);
+    border-bottom-right-radius: 5px;
+  }
+
+  .card-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .card-head .num {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: var(--red);
+    letter-spacing: 2px;
+  }
+
+  .card-head h2 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 3px;
+  }
+
+  .card-head .en {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: 1px;
+  }
+
+  /* ---------- 表单 ---------- */
+  .row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 20px;
+    margin-bottom: 18px;
+  }
+
+  .row:last-child { margin-bottom: 0; }
+
+  .field { display: flex; flex-direction: column; gap: 7px; }
+
+  .field label, .field > .label {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    letter-spacing: 1.5px;
+  }
+
+  .req { color: var(--red); font-style: normal; margin-left: 2px; }
+
+  input[type="text"],
+  input[type="number"],
+  select,
+  textarea {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--ink);
+    background: #fffef9;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 10px 13px;
+    outline: none;
+    transition: border-color .18s ease, box-shadow .18s ease;
+    width: 100%;
+  }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  select:focus,
+  textarea:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(150, 0, 2, 0.08);
+  }
+
+  input::placeholder, textarea::placeholder { color: var(--ink-faint); }
+
+  textarea { min-height: 92px; resize: vertical; line-height: 1.6; }
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%236b645a' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 13px center;
+    padding-right: 36px;
+    cursor: pointer;
+  }
+
+  .hint { font-size: 12px; color: var(--ink-faint); letter-spacing: .5px; }
+
+  /* ---------- 复选框 ---------- */
+  input[type="checkbox"] {
+    width: 16px; height: 16px;
+    accent-color: var(--red);
+    cursor: pointer;
+    flex: none;
+  }
+
+  .check-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--ink);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .checks { display: flex; gap: 26px; flex-wrap: wrap; align-items: center; }
+
+  /* ---------- 滑杆 ---------- */
+  .slider-field { display: flex; flex-direction: column; gap: 9px; }
+
+  .slider-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    letter-spacing: 1.5px;
+  }
+
+  .slider-head output {
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: var(--red);
+    letter-spacing: 1px;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--track, var(--paper-deep));
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--red);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+    cursor: grab;
+    transition: transform .12s ease;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.12); }
+
+  input[type="range"]::-webkit-slider-thumb:active { cursor: grabbing; }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #fff;
+    border: 2px solid var(--red);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.22);
+    cursor: grab;
+  }
+
+  input[type="range"]:disabled { opacity: .4; cursor: not-allowed; }
+
+  .slider-ends {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--ink-faint);
+    letter-spacing: .5px;
+  }
+
+  .budget-block { border-top: 1px dashed var(--line); margin-top: 20px; padding-top: 20px; }
+
+  .divider-dash { border-top: 1px dashed var(--line); margin: 22px 0 20px; }
+
+  /* ---------- 偏好标签 ---------- */
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  .chip { position: relative; cursor: pointer; }
+
+  .chip input { position: absolute; opacity: 0; width: 0; height: 0; }
+
+  .chip span {
+    display: inline-block;
+    padding: 8px 18px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: var(--ink);
+    background: #fffef9;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    transition: all .16s ease;
+    user-select: none;
+  }
+
+  .chip:hover span { border-color: var(--red); color: var(--red); }
+
+  .chip input:checked + span {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(150, 0, 2, 0.25);
+  }
+
+  .chip input:focus-visible + span { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  /* ---------- 提示与按钮 ---------- */
+  .form-hint {
+    text-align: center;
+    font-size: 13px;
+    color: var(--ink-faint);
+    letter-spacing: 1px;
+    margin: 4px 0 18px;
+  }
+
+  .submit-btn {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    font-family: var(--font-serif);
+    font-size: 19px;
+    letter-spacing: 8px;
+    text-indent: 8px;
+    color: #fff;
+    background: linear-gradient(160deg, #a51215, var(--red-deep));
+    border: none;
+    border-radius: 9px;
+    padding: 15px 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(122, 0, 1, 0.28);
+    transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 7px 18px rgba(122, 0, 1, 0.34); }
+
+  .submit-btn:active { transform: translateY(0); }
+
+  .submit-btn:disabled { opacity: .55; cursor: wait; transform: none; }
+
+  /* ---------- 进度面板 ---------- */
+  .job-line {
+    font-size: 14px;
+    color: var(--ink-soft);
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .job-line b {
+    font-family: var(--font-serif);
+    color: var(--red);
+    letter-spacing: 1.5px;
+    font-weight: 600;
+  }
+
+  .stage-box {
+    text-align: center;
+    background: var(--paper);
+    border: 1px solid var(--line-soft);
+    border-radius: 9px;
+    padding: 22px 18px 20px;
+    margin-bottom: 22px;
+  }
+
+  .stage-text {
+    font-family: var(--font-serif);
+    font-size: 21px;
+    letter-spacing: 5px;
+    color: var(--ink);
+    margin: 14px 0 6px;
+  }
+
+  .stage-hint { font-size: 13px; color: var(--ink-faint); letter-spacing: .5px; }
+
+  .ink-bar {
+    height: 3px;
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 2px;
+    background: linear-gradient(90deg, transparent, var(--red), transparent);
+    background-size: 45% 100%;
+    background-repeat: no-repeat;
+    animation: sweep 1.7s ease-in-out infinite;
+  }
+
+  .ink-bar.done { animation: none; background: var(--red); opacity: .8; }
+
+  @keyframes sweep {
+    0% { background-position: -60% 0; }
+    100% { background-position: 160% 0; }
+  }
+
+  .ministry {
+    padding: 13px 4px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+
+  .ministry:last-child { border-bottom: none; }
+
+  .m-top {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+
+  .m-name {
+    font-family: var(--font-serif);
+    font-size: 16.5px;
+    letter-spacing: 2px;
+    color: var(--ink);
+  }
+
+  .m-duty { font-size: 12px; color: var(--ink-faint); letter-spacing: .5px; }
+
+  .m-badge {
+    margin-left: auto;
+    font-size: 12px;
+    letter-spacing: 2px;
+    padding: 2px 10px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+  }
+
+  .ministry.pending .m-badge { color: var(--ink-faint); border-color: var(--line); background: #f7f2e7; }
+  .ministry.running .m-badge { color: var(--red); border-color: rgba(150, 0, 2, .4); background: var(--red-soft); animation: pulse 1.4s ease-in-out infinite; }
+  .ministry.done .m-badge { color: var(--green); border-color: rgba(62, 107, 67, .35); background: #eef3ec; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .55; }
+  }
+
+  .m-bar {
+    height: 6px;
+    background: var(--paper-deep);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .m-bar-fill {
+    height: 100%;
+    width: 6%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--red));
+    transition: width .7s ease;
+  }
+
+  .ministry.running .m-bar-fill {
+    background: linear-gradient(90deg, var(--gold), var(--red), var(--gold));
+    background-size: 200% 100%;
+    animation: flow 1.8s linear infinite;
+  }
+
+  .ministry.done .m-bar-fill { background: var(--green); }
+
+  @keyframes flow {
+    0% { background-position: 0% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .poll-warn {
+    margin-top: 18px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #8a6d1a;
+    background: #fbf3dc;
+    border: 1px solid #ecd9a8;
+    border-radius: 7px;
+    letter-spacing: .5px;
+  }
+
+  .done-panel {
+    margin-top: 22px;
+    text-align: center;
+    background: #f2f6ef;
+    border: 1px solid #d8e4d4;
+    border-radius: 9px;
+    padding: 24px 18px;
+  }
+
+  .done-title {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    letter-spacing: 4px;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+
+  .done-sub { font-size: 13.5px; color: var(--ink-soft); margin-bottom: 18px; }
+
+  .plan-link {
+    display: inline-block;
+    font-family: var(--font-serif);
+    font-size: 17px;
+    letter-spacing: 4px;
+    color: #fff;
+    background: linear-gradient(160deg, #a51215, var(--red-deep));
+    border-radius: 8px;
+    padding: 13px 34px;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(122, 0, 1, 0.25);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+
+  .plan-link:hover { transform: translateY(-2px); box-shadow: 0 7px 16px rgba(122, 0, 1, 0.32); }
+
+  .ghost-btn {
+    display: block;
+    margin: 20px auto 0;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: var(--ink-soft);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 9px 22px;
+    cursor: pointer;
+    transition: all .18s ease;
+  }
+
+  .ghost-btn:hover { border-color: var(--ink-faint); color: var(--ink); }
+
+  /* ---------- 错误面板 ---------- */
+  .error-panel {
+    background: #fdf6f3;
+    border: 1px solid #eccfc7;
+    border-left: 4px solid var(--red);
+    border-radius: 9px;
+    padding: 22px 20px;
+    margin-top: 22px;
+  }
+
+  .error-title {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    letter-spacing: 3px;
+    color: var(--red);
+    margin-bottom: 8px;
+  }
+
+  .error-msg { font-size: 14px; color: var(--ink-soft); margin-bottom: 14px; }
+
+  .error-tip { font-size: 13px; color: var(--ink-soft); letter-spacing: .5px; margin-bottom: 8px; }
+
+  .error-tip b { color: var(--red); font-weight: 600; }
+
+  .error-json {
+    width: 100%;
+    min-height: 130px;
+    font-family: Consolas, Menlo, "Courier New", monospace;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: #fffdf8;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 12px;
+    resize: vertical;
+  }
+
+  .copy-btn {
+    margin-top: 10px;
+    font-family: var(--font-sans);
+    font-size: 13.5px;
+    letter-spacing: 2px;
+    color: #fff;
+    background: var(--red);
+    border: none;
+    border-radius: 7px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: background .18s ease;
+  }
+
+  .copy-btn:hover { background: var(--red-deep); }
+
+  .copy-ok { font-size: 13px; color: var(--green); margin-left: 10px; }
+
+  /* ---------- 页脚 ---------- */
+  .site-foot { text-align: center; margin-top: 44px; }
+
+  .foot-rule {
+    width: 140px;
+    height: 1px;
+    margin: 0 auto 16px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .site-foot p { font-size: 12.5px; color: var(--ink-faint); letter-spacing: 2px; }
+
+  .site-foot .foot-note { margin-top: 6px; font-family: var(--font-serif); letter-spacing: 3px; }
+
+  .hidden { display: none !important; }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width: 640px) {
+    .page { padding: 36px 14px 56px; }
+    .site-head h1 { font-size: 26px; letter-spacing: 3px; }
+    .seal { width: 72px; height: 72px; }
+    .slogan { font-size: 14px; letter-spacing: 4px; }
+    .card { padding: 22px 16px 20px; }
+    .card-head h2 { font-size: 17.5px; }
+    .row { grid-template-columns: 1fr; gap: 16px; }
+    .checks { gap: 16px; }
+    .stage-text { font-size: 18px; letter-spacing: 3px; }
+    .m-name { font-size: 15px; }
+    .m-duty { display: none; }
+    .submit-btn { font-size: 17px; letter-spacing: 6px; text-indent: 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 页首 -->
+  <header class="site-head">
+    <svg class="seal" viewBox="0 0 84 84" aria-hidden="true">
+      <rect x="2" y="2" width="80" height="80" rx="6" fill="#960002"/>
+      <rect x="8" y="8" width="68" height="68" rx="4" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1.4"/>
+      <text x="42" y="31" text-anchor="middle" fill="#ffffff" font-size="20" font-family="serif" letter-spacing="1">鸿</text>
+      <text x="42" y="55" text-anchor="middle" fill="#ffffff" font-size="20" font-family="serif" letter-spacing="1">胪</text>
+      <text x="42" y="79" text-anchor="middle" fill="#ffffff" font-size="20" font-family="serif" letter-spacing="1">寺</text>
+    </svg>
+    <h1>鸿胪寺 · 行旅规划</h1>
+    <p class="slogan">三省六部，为君筹谋</p>
+    <p class="head-sub">填写行旅旨意，六部衙门各司其职，为您筹谋一套妥帖的出行方案</p>
+  </header>
+
+  <!-- 续查上次旨意 -->
+  <div class="resume-bar hidden" id="resumeBar">
+    <span>上次呈递的旨意尚未阅毕，可继续查看六部进度。</span>
+    <span class="resume-actions">
+      <button type="button" class="btn-small" id="resumeBtn">继续查看</button>
+      <button type="button" class="btn-small btn-quiet" id="resumeDismiss">忽略</button>
+    </span>
+  </div>
+
+  <main>
+    <!-- 表单区 -->
+    <div id="formWrap">
+
+      <form id="orderForm">
+
+        <!-- 壹 · 基本信息 -->
+        <section class="card">
+          <div class="card-head">
+            <span class="num">壹</span>
+            <h2>行旅要旨</h2>
+            <span class="en">BASICS</span>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="origin">出发地<i class="req">*</i></label>
+              <input type="text" id="origin" name="origin" placeholder="如「成都」" required autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="destination">目的地<i class="req">*</i></label>
+              <input type="text" id="destination" name="destination" placeholder="如「贵州」" required autocomplete="off">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="days">出行天数<i class="req">*</i></label>
+              <input type="number" id="days" name="days" min="1" max="15" step="1" value="3" required>
+              <span class="hint">填天数，系统按「N天N-1晚」规划 · 1 – 15 天</span>
+            </div>
+            <div class="field">
+              <label for="dateDesc">大概日期</label>
+              <input type="text" id="dateDesc" name="date_desc" placeholder="如「9月上旬」「国庆」" autocomplete="off">
+              <span class="hint">可留空</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 贰 · 预算与风格 -->
+        <section class="card">
+          <div class="card-head">
+            <span class="num">贰</span>
+            <h2>预算与风格</h2>
+            <span class="en">BUDGET &amp; PACE</span>
+          </div>
+
+          <label class="check-line">
+            <input type="checkbox" id="budgetAny" checked>
+            <span>预算不限（交给户部斟酌）</span>
+          </label>
+
+          <div class="budget-block hidden" id="budgetBox">
+            <div class="slider-field">
+              <div class="slider-head">
+                <label for="budgetLow">预算下限</label>
+                <output id="budgetLowOut" for="budgetLow">0</output>
+              </div>
+              <input type="range" id="budgetLow" min="0" max="20000" step="500" value="0">
+            </div>
+            <div class="slider-field" style="margin-top:18px;">
+              <div class="slider-head">
+                <label for="budgetHigh">预算上限</label>
+                <output id="budgetHighOut" for="budgetHigh">5,000</output>
+              </div>
+              <input type="range" id="budgetHigh" min="0" max="20000" step="500" value="5000">
+            </div>
+            <span class="hint" style="display:block;margin-top:12px;">元 / 人 · 0 – 20,000</span>
+          </div>
+
+          <div class="divider-dash"></div>
+
+          <div class="slider-field">
+            <div class="slider-head">
+              <label for="style">旅游风格</label>
+              <output id="styleOut" for="style">5 · 张弛有度</output>
+            </div>
+            <input type="range" id="style" min="0" max="10" step="1" value="5">
+            <div class="slider-ends">
+              <span>0 · 特种兵极限赶景点</span>
+              <span>10 · 佛系轻松游</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 叁 · 同行人 -->
+        <section class="card">
+          <div class="card-head">
+            <span class="num">叁</span>
+            <h2>同行人</h2>
+            <span class="en">COMPANIONS</span>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="partyType">同行关系</label>
+              <select id="partyType" name="party_type">
+                <option value="独自">独自</option>
+                <option value="情侣">情侣</option>
+                <option value="朋友">朋友</option>
+                <option value="家人">家人</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="partySize">同行人数</label>
+              <input type="number" id="partySize" name="party_size" min="1" max="20" step="1" value="1">
+              <span class="hint">含自己，共几人</span>
+            </div>
+          </div>
+
+          <div class="checks">
+            <label class="check-line">
+              <input type="checkbox" id="hasElderly" name="has_elderly">
+              <span>有老人同行</span>
+            </label>
+            <label class="check-line">
+              <input type="checkbox" id="hasKids" name="has_kids">
+              <span>有小孩同行</span>
+            </label>
+          </div>
+
+          <div class="row hidden" id="kidsAgeField" style="margin-top:18px;">
+            <div class="field">
+              <label for="kidsAge">小孩年龄</label>
+              <input type="number" id="kidsAge" name="kids_age" min="0" max="17" step="1" value="6" placeholder="如 6">
+              <span class="hint">周岁 · 0 – 17</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 肆 · 兴趣偏好 -->
+        <section class="card">
+          <div class="card-head">
+            <span class="num">肆</span>
+            <h2>兴趣偏好</h2>
+            <span class="en">TASTES</span>
+          </div>
+
+          <div class="field">
+            <span class="label">偏好标签（可多选）</span>
+            <div class="chips" id="prefChips">
+              <label class="chip"><input type="checkbox" name="preferences" value="自然风光"><span>自然风光</span></label>
+              <label class="chip"><input type="checkbox" name="preferences" value="人文历史"><span>人文历史</span></label>
+              <label class="chip"><input type="checkbox" name="preferences" value="美食"><span>美食</span></label>
+              <label class="chip"><input type="checkbox" name="preferences" value="古镇民俗"><span>古镇民俗</span></label>
+              <label class="chip"><input type="checkbox" name="preferences" value="网红打卡"><span>网红打卡</span></label>
+              <label class="chip"><input type="checkbox" name="preferences" value="小众冷门"><span>小众冷门</span></label>
+              <label class="chip"><input type="checkbox" name="preferences" value="亲子"><span>亲子</span></label>
+              <label class="chip"><input type="checkbox" name="preferences" value="购物"><span>购物</span></label>
+            </div>
+          </div>
+
+          <div class="divider-dash"></div>
+
+          <div class="field">
+            <label for="notes">备注</label>
+            <textarea id="notes" name="notes" placeholder="其他要求：特别想去的地方、忌口、住宿偏好、往返时段等（可留空）"></textarea>
+          </div>
+        </section>
+
+        <p class="form-hint">除出发地与目的地外均可留空，缺失信息由太子斟酌补全。</p>
+
+        <button type="submit" class="submit-btn" id="submitBtn">呈递旨意</button>
+      </form>
+
+      <!-- 呈递失败 -->
+      <section class="error-panel hidden" id="errorPanel">
+        <p class="error-title">呈递受阻</p>
+        <p class="error-msg" id="errorMsg">服务暂时无响应。</p>
+        <p class="error-tip">可将<b>旨意 JSON</b>复制后直接交给 Hermes 代为呈递：</p>
+        <textarea class="error-json" id="errorJson" readonly></textarea>
+        <br>
+        <button type="button" class="copy-btn" id="copyBtn">复制 JSON</button>
+        <span class="copy-ok hidden" id="copyOk">已复制</span>
+      </section>
+    </div>
+
+    <!-- 进度区 -->
+    <section class="card hidden" id="progressPanel" aria-live="polite">
+      <div class="card-head">
+        <span class="num">·</span>
+        <h2>六部筹谋中</h2>
+        <span class="en">IN PROGRESS</span>
+      </div>
+
+      <p class="job-line">旨意编号：<b id="jobIdText">—</b></p>
+
+      <div class="stage-box">
+        <div class="ink-bar" id="inkBar"></div>
+        <p class="stage-text" id="stageText">太子解析中</p>
+        <p class="stage-hint" id="stageHint">六部衙门按部就班，约需五至三十分钟，页面保持开启即可。</p>
+      </div>
+
+      <div id="ministryList"></div>
+
+      <div class="poll-warn hidden" id="pollWarn">
+        连续几次未能联系上鸿胪寺衙门，仍在自动重试。若长时间无进展，请确认本地服务（127.0.0.1:8767）是否运行。
+      </div>
+
+      <div class="done-panel hidden" id="donePanel">
+        <p class="done-title">大功告成</p>
+        <p class="done-sub">六部筹谋已毕，行旅方案已然出炉，请御览。</p>
+        <a class="plan-link" id="doneLink" href="#">查看行旅方案</a>
+      </div>
+
+      <button type="button" class="ghost-btn" id="backBtn">修改需求，重新呈递</button>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-rule"></div>
+    <p>鸿胪寺 · 三省六部旅游专署 · 内测版</p>
+    <p class="foot-note">礼 · 兵 · 工 · 户 · 吏 · 刑 —— 六部各司其职，为君筹谋</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ================= 常量 ================= */
+
+  // 页面若由鸿胪寺本地服务托管（127.0.0.1 / localhost），使用同源相对路径；
+  // 否则按约定直连 http://127.0.0.1:8767
+  var API_BASE = 'http://127.0.0.1:8767';
+  if (location.protocol === 'http:' || location.protocol === 'https:') {
+    if (location.hostname === '127.0.0.1' || location.hostname === 'localhost') {
+      API_BASE = '';
+    }
+  }
+
+  var POLL_INTERVAL = 5000;      // 每 5 秒轮询一次
+  var SUBMIT_TIMEOUT = 15000;    // 提交超时
+  var POLL_TIMEOUT = 8000;       // 单次轮询超时
+  var STORAGE_KEY = 'hls_job';   // 续查用本地存储键
+
+  var MINISTRIES = [
+    { key: '礼部', duty: '攻略采集 · 景点美食玩法' },
+    { key: '兵部', duty: '交通调研 · 车次票价中转' },
+    { key: '工部', duty: '地图测算 · 路线动线核查' },
+    { key: '户部', duty: '预算核算 · 分项总账风险' },
+    { key: '吏部', duty: '同行人画像 · 节奏住宿餐食' },
+    { key: '刑部', duty: '信息核验 · 溯源时效去伪' }
+  ];
+
+  var STAGE_FALLBACK = {
+    pending: '太子解析中',
+    running: '六部调研中',
+    done: '完成'
+  };
+
+  var MIN_STATUS = {
+    done: { text: '完成', cls: 'done' },
+    running: { text: '办理中', cls: 'running' },
+    pending: { text: '待命', cls: 'pending' }
+  };
+
+  /* ================= 元素 ================= */
+
+  function $(id) { return document.getElementById(id); }
+
+  var form = $('orderForm');
+  var formWrap = $('formWrap');
+  var submitBtn = $('submitBtn');
+  var progressPanel = $('progressPanel');
+  var errorPanel = $('errorPanel');
+  var ministryList = $('ministryList');
+
+  var budgetAny = $('budgetAny');
+  var budgetBox = $('budgetBox');
+  var budgetLow = $('budgetLow');
+  var budgetHigh = $('budgetHigh');
+  var styleSlider = $('style');
+  var partyType = $('partyType');
+  var partySize = $('partySize');
+  var hasKids = $('hasKids');
+  var kidsAgeField = $('kidsAgeField');
+  var kidsAge = $('kidsAge');
+
+  var pollTimer = null;
+  var stopFlag = false;
+  var currentJob = null;
+  var failCount = 0;
+
+  /* ================= 工具 ================= */
+
+  function fetchTimeout(url, opts, ms) {
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, ms);
+    opts = opts || {};
+    opts.signal = ctrl.signal;
+    return fetch(url, opts).then(
+      function (res) { clearTimeout(timer); return res; },
+      function (err) { clearTimeout(timer); throw err; }
+    );
+  }
+
+  function parseJson(res) {
+    return res.text().then(function (t) {
+      try { return JSON.parse(t); } catch (e) { return null; }
+    });
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).then(
+        function () { return true; },
+        function () { return legacyCopy(text); }
+      );
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+
+  function legacyCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  /* ================= 表单交互 ================= */
+
+  // 预算不限开关
+  budgetAny.addEventListener('change', function () {
+    budgetBox.classList.toggle('hidden', this.checked);
+  });
+
+  // 滑杆轨道填充与数值显示
+  function paintSlider(el) {
+    var p = ((el.value - el.min) / (el.max - el.min)) * 100;
+    el.style.setProperty('--track',
+      'linear-gradient(90deg, #960002 ' + p + '%, #f3ecdd ' + p + '%)');
+  }
+
+  function styleWord(v) {
+    if (v <= 2) return '铁血赶场';
+    if (v <= 4) return '偏紧凑';
+    if (v <= 6) return '张弛有度';
+    if (v <= 8) return '从容悠闲';
+    return '佛系漫游';
+  }
+
+  function fmt(n) { return Number(n).toLocaleString('zh-CN'); }
+
+  function syncOutputs() {
+    var lo = Number(budgetLow.value);
+    var hi = Number(budgetHigh.value);
+    // 保持下限不高于上限
+    if (lo > hi) {
+      if (document.activeElement === budgetLow) { budgetHigh.value = lo; }
+      else { budgetLow.value = hi; }
+      paintSlider(budgetLow);
+      paintSlider(budgetHigh);
+      lo = Number(budgetLow.value);
+      hi = Number(budgetHigh.value);
+    }
+    $('budgetLowOut').textContent = fmt(lo);
+    $('budgetHighOut').textContent = fmt(hi);
+    $('styleOut').textContent = styleSlider.value + ' · ' + styleWord(Number(styleSlider.value));
+  }
+
+  [budgetLow, budgetHigh, styleSlider].forEach(function (s) {
+    s.addEventListener('input', function () {
+      paintSlider(s);
+      syncOutputs();
+    });
+    paintSlider(s);
+  });
+  syncOutputs();
+
+  // 同行关系 → 人数默认值
+  partyType.addEventListener('change', function () {
+    var map = { '独自': 1, '情侣': 2, '朋友': 3, '家人': 3 };
+    if (map[this.value]) { partySize.value = map[this.value]; }
+  });
+
+  // 小孩年龄字段显隐
+  hasKids.addEventListener('change', function () {
+    kidsAgeField.classList.toggle('hidden', !this.checked);
+    kidsAge.required = this.checked;
+  });
+
+  /* ================= 收集载荷 ================= */
+
+  function collectPayload() {
+    var prefs = [];
+    var checked = form.querySelectorAll('input[name="preferences"]:checked');
+    for (var i = 0; i < checked.length; i++) { prefs.push(checked[i].value); }
+
+    return {
+      origin: $('origin').value.trim() || null,
+      destination: $('destination').value.trim() || null,
+      days: parseInt($('days').value, 10) || null,
+      budget_low: budgetAny.checked ? null : (parseInt(budgetLow.value, 10) || 0),
+      budget_high: budgetAny.checked ? null : (parseInt(budgetHigh.value, 10) || 0),
+      style: parseInt(styleSlider.value, 10),
+      party_type: partyType.value,
+      party_size: parseInt(partySize.value, 10) || null,
+      has_elderly: $('hasElderly').checked,
+      has_kids: hasKids.checked,
+      kids_age: hasKids.checked ? (parseInt(kidsAge.value, 10) || null) : null,
+      date_desc: $('dateDesc').value.trim() || null,
+      preferences: prefs,
+      notes: $('notes').value.trim() || null
+    };
+  }
+
+  /* ================= 提交 ================= */
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    hideError();
+
+    var payload = collectPayload();
+    submitBtn.disabled = true;
+    submitBtn.classList.add('loading');
+    submitBtn.textContent = '呈递中…';
+
+    postSubmit(payload).then(
+      function (jobId) {
+        beginProgress(jobId);
+        pollStatus(jobId);
+      },
+      function (err) {
+        showError(err, payload);
+      }
+    ).then(function () {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('loading');
+      submitBtn.textContent = '呈递旨意';
+    });
+  });
+
+  function postSubmit(payload) {
+    return fetchTimeout(API_BASE + '/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }, SUBMIT_TIMEOUT).then(function (res) {
+      return parseJson(res).then(function (data) {
+        if (!data) {
+          throw new Error('服务响应格式异常（HTTP ' + res.status + '）');
+        }
+        if (!res.ok) {
+          throw new Error(data.error || ('服务返回错误（HTTP ' + res.status + '）'));
+        }
+        if (!data.job_id) {
+          throw new Error('服务响应缺少 job_id');
+        }
+        return data.job_id;
+      });
+    }).catch(function (err) {
+      if (err && err.name === 'AbortError') {
+        throw new Error('连接超时，鸿胪寺衙门暂未应答');
+      }
+      if (err instanceof TypeError) {
+        throw new Error('无法连接服务（127.0.0.1:8767），请确认后端已启动');
+      }
+      throw err;
+    });
+  }
+
+  /* ================= 进度 ================= */
+
+  function beginProgress(jobId) {
+    currentJob = jobId;
+    stopFlag = false;
+    failCount = 0;
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ job_id: jobId, ts: Date.now() }));
+    } catch (e) { /* 隐私模式等场景下忽略 */ }
+
+    $('jobIdText').textContent = jobId;
+    $('donePanel').classList.add('hidden');
+    $('pollWarn').classList.add('hidden');
+    $('inkBar').classList.remove('done');
+    renderStage({ status: 'pending' });
+    renderMinistries({});
+    $('stageHint').textContent = '六部衙门按部就班，约需五至三十分钟，页面保持开启即可。';
+
+    formWrap.classList.add('hidden');
+    progressPanel.classList.remove('hidden');
+    errorPanel.classList.add('hidden');
+    progressPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function pollStatus(jobId) {
+    if (stopFlag || currentJob !== jobId) { return; }
+
+    fetchTimeout(API_BASE + '/api/status/' + encodeURIComponent(jobId), { method: 'GET' }, POLL_TIMEOUT)
+      .then(function (res) {
+        return parseJson(res).then(function (data) {
+          // 任务尚未登记时服务可能返回 404，按「受理中」处理，不视为故障
+          if (!data && res.status === 404) { data = { status: 'pending' }; }
+          if (!data) { throw new Error('响应格式异常'); }
+
+          failCount = 0;
+          $('pollWarn').classList.add('hidden');
+
+          renderStage(data);
+          renderMinistries(data);
+
+          if (data.status === 'done') {
+            finishDone(jobId);
+            return;
+          }
+          pollTimer = setTimeout(function () { pollStatus(jobId); }, POLL_INTERVAL);
+        });
+      })
+      .catch(function () {
+        failCount++;
+        if (failCount >= 3) { $('pollWarn').classList.remove('hidden'); }
+        pollTimer = setTimeout(function () { pollStatus(jobId); }, POLL_INTERVAL);
+      });
+  }
+
+  function renderStage(data) {
+    var stage = data.stage;
+    if (!stage || typeof stage !== 'string' || !stage.trim()) {
+      stage = STAGE_FALLBACK[data.status] || '受理中';
+    }
+    if (data.status === 'done') {
+      stage = '完成';
+      $('inkBar').classList.add('done');
+      $('stageHint').textContent = '六部筹谋已毕，行旅方案出炉。';
+    }
+    $('stageText').textContent = stage;
+  }
+
+  function renderMinistries(data) {
+    var m = data.ministries || {};
+    // 组装/封驳阶段起，六部理当悉数完成；后端未下发明细时整体置为完成
+    if ((data.status === 'done' || /组装|封驳|完成/.test(data.stage || '')) && Object.keys(m).length === 0) {
+      m = {};
+      MINISTRIES.forEach(function (item) { m[item.key] = 'done'; });
+    }
+    MINISTRIES.forEach(function (item) {
+      var el = $('min_' + item.key);
+      if (!el) { return; }
+      var raw = m[item.key] || 'pending';
+      var st = MIN_STATUS[raw] || MIN_STATUS.pending;
+      el.className = 'ministry ' + st.cls;
+      el.querySelector('.m-badge').textContent = st.text;
+      el.querySelector('.m-bar-fill').style.width =
+        raw === 'done' ? '100%' : (raw === 'running' ? '62%' : '6%');
+    });
+  }
+
+  function finishDone(jobId) {
+    stopFlag = true;
+    if (pollTimer) { clearTimeout(pollTimer); }
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* 忽略 */ }
+    $('donePanel').classList.remove('hidden');
+    $('doneLink').setAttribute('href', '/plan/' + encodeURIComponent(jobId));
+    $('donePanel').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  /* ================= 错误与备份 ================= */
+
+  function showError(err, payload) {
+    $('errorMsg').textContent = (err && err.message) ? err.message : String(err);
+    $('errorJson').value = JSON.stringify(payload, null, 2);
+    $('copyOk').classList.add('hidden');
+    errorPanel.classList.remove('hidden');
+    errorPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function hideError() {
+    errorPanel.classList.add('hidden');
+  }
+
+  $('copyBtn').addEventListener('click', function () {
+    copyText($('errorJson').value).then(function (ok) {
+      var el = $('copyOk');
+      if (ok) {
+        el.classList.remove('hidden');
+        el.textContent = '已复制，请转交 Hermes';
+        setTimeout(function () { el.classList.add('hidden'); }, 4000);
+      } else {
+        $('errorJson').focus();
+        $('errorJson').select();
+      }
+    });
+  });
+
+  /* ================= 返回重填 ================= */
+
+  $('backBtn').addEventListener('click', function () {
+    stopFlag = true;
+    currentJob = null;
+    if (pollTimer) { clearTimeout(pollTimer); }
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* 忽略 */ }
+    hideError();
+    progressPanel.classList.add('hidden');
+    formWrap.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ================= 初始化 ================= */
+
+  // 渲染六部列表（静态结构，一次生成）
+  MINISTRIES.forEach(function (item) {
+    var div = document.createElement('div');
+    div.className = 'ministry pending';
+    div.id = 'min_' + item.key;
+    div.innerHTML =
+      '<div class="m-top">' +
+      '<span class="m-name">' + item.key + '</span>' +
+      '<span class="m-duty">' + item.duty + '</span>' +
+      '<span class="m-badge">待命</span>' +
+      '</div>' +
+      '<div class="m-bar"><div class="m-bar-fill" style="width:6%"></div></div>';
+    ministryList.appendChild(div);
+  });
+
+  // 续查上次旨意
+  var saved = null;
+  try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch (e) { saved = null; }
+  if (saved && saved.job_id) {
+    $('resumeBar').classList.remove('hidden');
+    $('resumeBtn').addEventListener('click', function () {
+      $('resumeBar').classList.add('hidden');
+      beginProgress(saved.job_id);
+      pollStatus(saved.job_id);
+    });
+    $('resumeDismiss').addEventListener('click', function () {
+      $('resumeBar').classList.add('hidden');
+    });
+  }
+})();
+</script>
+</body>
+</html>

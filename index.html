@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>鸿胪寺 · Honglusi — Multi-Agent Travel Planner</title>
+<style>
+  :root {
+    --paper: #faf7f0;
+    --card: #fffdf8;
+    --ink: #2b2723;
+    --ink-soft: #6b645a;
+    --red: #960002;
+    --red-deep: #7a0001;
+    --gold: #b08d4f;
+    --line: #e6dcc8;
+    --font-serif: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", Georgia, "Times New Roman", serif;
+    --font-sans: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-sans);
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(176,141,79,.07), transparent 70%),
+      repeating-linear-gradient(0deg, rgba(150,0,2,.014) 0 1px, transparent 1px 4px);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+  body::before {
+    content: ""; position: fixed; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--red-deep), var(--red), var(--red-deep)); z-index: 10;
+  }
+  .page { max-width: 860px; margin: 0 auto; padding: 64px 24px 56px; }
+  header { text-align: center; margin-bottom: 34px; }
+  h1 {
+    font-family: var(--font-serif); font-size: 40px; font-weight: 600;
+    letter-spacing: 8px; margin-bottom: 10px;
+  }
+  .sub { font-family: var(--font-serif); font-size: 15px; letter-spacing: 3px; color: var(--red); }
+  .sub-en { font-size: 13px; color: var(--ink-soft); margin-top: 6px; letter-spacing: .5px; }
+  .rule { width: 72px; height: 1px; background: var(--gold); margin: 22px auto; }
+  .btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin: 26px 0 8px; }
+  .btn {
+    display: inline-block; padding: 11px 26px; border-radius: 3px; text-decoration: none;
+    font-size: 15px; letter-spacing: 2px; transition: all .18s ease;
+  }
+  .btn-primary { background: var(--red); color: #fff; box-shadow: 0 2px 6px rgba(122,0,1,.22); }
+  .btn-primary:hover { background: var(--red-deep); transform: translateY(-1px); }
+  .btn-ghost { border: 1px solid var(--line); color: var(--ink); background: var(--card); }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--red); }
+  .intro {
+    margin: 30px auto 8px; max-width: 700px; text-align: center;
+    font-size: 15px; color: var(--ink-soft);
+  }
+  .intro strong { color: var(--ink); font-weight: 600; }
+  .flow {
+    display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap;
+    margin: 22px 0 30px; font-size: 13.5px; color: var(--ink-soft); font-family: var(--font-serif);
+  }
+  .flow span { padding: 4px 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); }
+  .flow .mid { border-color: rgba(176,141,79,.5); color: var(--red); }
+  .preview {
+    margin: 8px auto 0; border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+    box-shadow: 0 10px 30px rgba(43,39,35,.10); background: var(--card);
+  }
+  .preview img { display: block; width: 100%; height: auto; }
+  .cap { text-align: center; font-size: 12.5px; color: var(--ink-soft); margin-top: 10px; }
+  footer { text-align: center; margin-top: 46px; font-size: 12.5px; color: #9a9183; letter-spacing: 1px; }
+  footer a { color: var(--gold); text-decoration: none; }
+  @media (max-width: 560px) { h1 { font-size: 30px; letter-spacing: 5px; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <h1>鸿胪寺</h1>
+    <div class="sub">多智能体旅游规划系统</div>
+    <div class="sub-en">HONGLUSI · MULTI-AGENT TRAVEL PLANNER</div>
+    <div class="rule"></div>
+    <p class="intro">
+      填一次表，十六个角色化 AI 智能体分工完成全网调研、预算核算与独立核验，<br>
+      产出 <strong>2–3 套带地图、行程、预算与溯源标签的完整旅行方案</strong>。
+    </p>
+    <p class="intro" style="font-size:13.5px;margin-top:2px;">
+      One form in — a team of specialized agents out: researched, verified, budgeted, rendered.
+    </p>
+    <div class="btns">
+      <a class="btn btn-primary" href="examples/YZ-20260814-009/plan.html">查看示例方案 →</a>
+      <a class="btn btn-ghost" href="https://github.com/12345666ddwa/honglusi-travel-planner">GitHub 仓库</a>
+    </div>
+    <div class="flow">
+      <span>填表</span>→<span>礼部·攻略</span><span>户部·预算</span><span>兵部·车次</span><span>工部·路线</span>→<span class="mid">刑部·独立核验</span>→<span class="mid">方案渲染</span>
+    </div>
+  </header>
+
+  <div class="preview">
+    <img src="docs/screenshots/plan-overview.png" alt="鸿胪寺方案页示例（成都→贵州 4天3晚）">
+  </div>
+  <p class="cap">示例：成都 → 贵州 · 4天3晚 · 情侣佛系漫游（内测真实案例）</p>
+
+  <footer>
+    内测版 · 2026-08 &nbsp;|&nbsp; <a href="https://github.com/12345666ddwa/honglusi-travel-planner">github.com/12345666ddwa/honglusi-travel-planner</a>
+  </footer>
+</div>
+</body>
+</html>
